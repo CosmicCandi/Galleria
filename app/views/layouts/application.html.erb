@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Galleria</title>
+    <title>Galler&iacute;o</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,35 @@
   </head>
 
   <body>
+    <!-- Header Goes Here -->
+    <header class="container">
+      <div class="row">
+        <div class="col-sm-6" >
+          <h1 class="branding">Galler&iacute;o</h1>
+        </div>
+        <div class="col-sm-6 flex">
+          <ul class="nav nav-pills nav-justified">
+            <li role="presentation" class="active"><%= link_to "Sign Up", new_user_path, method: "get"  %></li>
+            <li role="presentation"><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </div>
+      <h5>In the river of life, let your photos flow...</h5>
+    </header>
+
+  <div class="container">
     <%= yield %>
+  </div>
+
+    <!-- Footer Goes Here -->
+    <footer class="container">
+      <div class="row flex">
+        <div class="col-sm-12 text-center">
+          This is where the bottom footer will go...
+        </div>
+      </div>
+      </div>
+    </footer>
+
   </body>
 </html>
