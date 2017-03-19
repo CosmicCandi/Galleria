@@ -8,12 +8,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   process :convert=> 'png'
   process :tags => ['gallerio']
 
-  version :standard do
-    process :resize_to_fill => [450, 450, :north]
+  version :std do
+    process :resize_to_fit => [450, 450, :north]
   end
 
-  version :thumbnail do
-    resize_to_fit(80,80)
+  version :thumb do
+    resize_to_fill(80,80)
   end
 
   # Choose what kind of storage to use for this uploader:

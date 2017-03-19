@@ -1,0 +1,5 @@
+<%= simple_form_for [@gallery, @photo] do |f| %>
+  <%= f.input :photo_upload %>
+  <%= f.input :caption %>
+  <%= f.submit class:"btn btn-primary" %>
+<% end %>

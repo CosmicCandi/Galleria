@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    render :marketing
+    unless current_user
+      render :marketing
+    else
+      render 'galleries/index'
+    end
   end
 
   def new
@@ -17,7 +21,7 @@ class UsersController < ApplicationController
       flash[:success] = "Account successfully created!"
       redirect_to :root
     else
-      render :new
+      render :signup
     end
   end
 

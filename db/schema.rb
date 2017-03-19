@@ -10,28 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316180559) do
+ActiveRecord::Schema.define(version: 20170319202229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "galleries", force: :cascade do |t|
-    t.integer  "photo_id"
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
     t.integer  "photo_count"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["photo_id"], name: "index_galleries_on_photo_id", using: :btree
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "photos_count", default: 0
     t.index ["user_id"], name: "index_galleries_on_user_id", using: :btree
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "path"
     t.string   "caption"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "gallery_id"
+    t.string   "photo_upload"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +42,5 @@ ActiveRecord::Schema.define(version: 20170316180559) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "galleries", "photos"
   add_foreign_key "galleries", "users"
 end

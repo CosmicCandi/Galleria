@@ -1,4 +1,6 @@
 class Photo < ApplicationRecord
-  has_and_belongs_to_many :galleries
-  belongs_to :user
+  belongs_to :gallery, counter_cache: true
+
+  mount_uploader :photo_upload, PhotoUploader
+
 end
