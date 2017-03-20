@@ -3,10 +3,7 @@
     <div class="media-object">
       <div class="media">
         <div class="media-left">
-          <% if gal_output.photos.count > 0 do %>
-            <%= link_to gallery_photos_path(gal_output.id) do%>
-            <%= image_tag gal_output.photos.order(created_at: :desc).first.photo_upload.versions[:thumb], class: "media-object" %>
-            <% end %>
+          <%= link_to gallery_photos_path(gal_output.id) do%>
           <% end %>
         </div>
       </div>
@@ -16,7 +13,7 @@
         <%= gal_output.description %>
       </div>
     </div>
-    <% end %>
+  <% end %>
 <% else %>
   <h1 class="text-center"> No galleries to display.</h1>
   <p class="text-center"> Click "New Gallery" to create one. </p>
