@@ -14,10 +14,22 @@
     </div>
 
 
-  <% if @current_user.galleries.find(@gallery.id).photos.count != nil %>
-    <% current_user.galleries.find(@gallery.id).photos.each do |photo| %>
-      <%= link_to image_tag(photo.photo_upload.versions[:thumb]), "Click to enlarge" %>
-      <%= photo.created_at.strftime("%A %b. %e %l:%m%P") %>
+  <% if @gallery.photos.count != nil %>
+    <% @gallery.photos.each do |photo| %>
+      <div class="media-object">
+        <div class="media">
+          <%= link_to image_tag(photo.photo_upload.versions[:thumb]), gallery_photo_path(@gallery, photo) %>
+          <p> <%= "Created at: #{photo.created_at.strftime("%A %b. %e %l:%m%P")}" %> </p>
+        </div>
+      </div>
+      <!-- Delete a Photo -->
+      <%= link_to gallery_photo_path(@gallery, photo), method: "delete", class:"primary" do %>
+        <span class="button-icon">
+        <i class="glyphicon glyphicon-trash"></i>
+        </span>
+        <span class="button-label">Delete Photo</span>
+      <% end %>
+
     <% end %>
   <% else %>
     <h1 class="text-center"> You have no photos to display. Click "Add Photo" to add some!</h1>
