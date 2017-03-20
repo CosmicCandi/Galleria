@@ -3,8 +3,10 @@
     <div class="media-object">
       <div class="media">
         <div class="media-left">
-          <%= link_to gallery_photos_path(gal_output.id) do%>
+          <% if gal_output.photos.count > 0 do %>
+            <%= link_to gallery_photos_path(gal_output.id) do%>
             <%= image_tag gal_output.photos.order(created_at: :desc).first.photo_upload.versions[:thumb], class: "media-object" %>
+            <% end %>
           <% end %>
         </div>
       </div>
