@@ -10,29 +10,30 @@
 
   <body>
     <!-- Header Goes Here -->
-    <header class="container">
+    <header class="header container">
       <div class="row">
-        <div class="col-sm-6" >
-          <h1 class="branding">Galler&iacute;o</h1>
+        <div class="col-sm-8" >
+          <h1 class="branding"><a href="/">Galle<span class="rio">r&iacute;o</span></a></h1>
         </div>
-        <div class="col-sm-6 flex">
+        <div class="col-sm-4 flex">
           <ul class="nav nav-pills nav-justified">
             <li role="presentation" class="active">
               <% unless current_user %>
-                <%= link_to "Sign Up", new_user_path, method: "get"  %></li>
-                <li role="presentation" class="active">
+                <%= link_to "Sign Up", new_user_path, method: "get" %></li>
+                <li role="presentation" class="btn-info active">
                 <%= link_to "Login", login_path, method: "get" %></li>
               <% end %>
 
               <% if current_user %>
-              <li role="presentation" class="active">
-              <%= link_to "New Gallery", new_gallery_path %></li>
-              <li role="presentation" class="active"><%= link_to "Logout", logout_path, method: "delete" %></li>
+                <li role="presentation" class="btn-info active">
+                  <%= link_to "New Gallery", new_gallery_path %></li>
+                <li role="presentation" class="btn-info active">
+                  <%= link_to "Logout", logout_path, method: "delete" %></li>
               <% end %>
           </ul>
         </div>
       </div>
-      <h5>In the river of life, let your photos flow...</h5>
+      <h5>In the <span class="rio">river</span> of life, let your photos flow...</h5>
     </header>
 
   <div class="container">

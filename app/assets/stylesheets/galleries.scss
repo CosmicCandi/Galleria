@@ -1,3 +1,29 @@
 // Place all the styles related to the Galleries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.media{
+  margin-bottom: 15px;
+
+  .media-body{
+    color: #003333;
+    background-color: #407F7F;
+  }
+
+  .media-left{
+    padding-right: 0px;
+  }
+
+  .media-heading{
+    background-color: #0D4D4D;
+    color: #669999;
+  }
+
+  a{
+    color: #FFD1AA;
+    text-decoration: none;
+  }
+
+
+}

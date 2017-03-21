@@ -1,18 +1,76 @@
+<div class="flash col-sm-12 text-center">
+  <% if flash.any? %>
+  <%= flash[:success]%>
+  <% end %>
+</div>
+
 <% if @current_user.galleries.count > 0 %>
   <% @current_user.galleries.each do |gal_output| %>
-    <div class="media-object">
-      <div class="media">
-        <div class="media-left">
-          <%= link_to gallery_photos_path(gal_output.id) do%>
-          <% end %>
-        </div>
-      </div>
+    <div class="col-sm-3">
 
-      <div class="media-body">
-        <h4 class="media-heading"><%= link_to "#{gal_output.title}", gallery_photos_path(gal_output.id) %></h4>
-        <%= gal_output.description %>
-      </div>
+        <div class="media">
+          <div class="media-left">
+            <div class="media-object text-center">
+              <%= link_to gallery_photos_path(gal_output.id) do%>
+              <%= image_tag gal_output.gallery_thumb %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="media-body">
+            <h4 class="media-heading text-center"><%= link_to "#{gal_output.title}", gallery_photos_path(gal_output.id) %></h4>
+            <%= simple_format gal_output.description, class:"text-center" %>
+          </div>
+          <p class="text-center"><%= "Created: #{gal_output.created_at.strftime("%A %b. %e %l:%m%P")}" %></p>
+
+          <table class="table gallery_buttons">
+            <tr>
+              <td>
+                <!-- Add a photo -->
+                <%= link_to new_gallery_photo_path(gal_output.id, @photo), class:"primary" do %>
+                  <span class="button-icon">
+                  <i class="glyphicon glyphicon-plus"></i>
+                  </span>
+                  <span class="button-label">Add a photo</span>
+                <% end %>
+              </td>
+              <td>
+                <!-- Edit a Gallery -->
+                <%= link_to edit_gallery_path(gal_output.id), class:"primary" do %>
+                  <span class="button-icon">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                  </span>
+                  <span class="button-label">Edit Gallery</span>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <!-- Share a Gallery -->
+                <%= link_to edit_gallery_path(gal_output.id), class:"primary" do %>
+                  <span class="button-icon">
+                  <i class="glyphicon glyphicon-envelope"></i>
+                  </span>
+                  <span class="button-label">Share Gallery</span>
+                <% end %>
+
+              </td>
+              <td>
+                <!-- Delete a Gallery -->
+                <%= link_to gallery_path(gal_output.id), data: {confirm: "Are you sure you want to delete this gallery? This operation cannot be undone."}, method: "delete", class:"primary" do %>
+                  <span class="button-icon">
+                  <i class="glyphicon glyphicon-trash"></i>
+                  </span>
+                  <span class="button-label">Delete Gallery</span>
+                <% end %>
+
+              </td>
+            </tr>
+          </table>
+        </div>
     </div>
+
+
   <% end %>
 <% else %>
   <h1 class="text-center"> No galleries to display.</h1>

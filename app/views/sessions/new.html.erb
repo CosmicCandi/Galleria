@@ -1,8 +1,14 @@
 <div class="container">
-  <h1>Login:</h1>
-    <%= simple_form_for :session do |f| %>
-    <%= f.input :username %>
-    <%= f.input :password %>
-    <%= f.button :submit, "Login", class: "btn btn-primary" %>
-    <% end %>
+  <div class="row">
+
+    <div class="form-group col-sm-5">
+      <h1>Login:</h1>
+        <%= simple_form_for :session, defaults: { input_html: { class: 'form-control' } } do |f| %>
+        <%= f.input :username %>
+        <%= f.input :password %>
+        <%= f.button :submit, "Login", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+
+  </div>
 </div>

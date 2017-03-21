@@ -1,13 +1,10 @@
 class GalleriesController < ApplicationController
 
+  before_action :find_gallery, only: [:edit, :update]
+
   def index
     @galleries = current_user.galleries.order(created_at: :desc)
-    if @galleries.photos.count == nil
-      @photo = Photo.new(photo_upload: "https://unsplash.it/300/300/?#{rand(1..1080)}", caption: "A random photo to start your gallery off")
-    else
-    @photo = @galleries.photos.order(created_at: :desc).first.photo_upload.versions[:thumb]
-    render "galleries/new"
-    end
+    render "galleries/form"
   end
 
   def new
@@ -18,13 +15,41 @@ class GalleriesController < ApplicationController
     @gallery = current_user.galleries.new(gallery_params)
     if @gallery.save
       flash[:success] = "New gallery,  #{@gallery.title}, created!"
-      render :index
+      redirect_to :root
     else
       render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    @gallery = current_user.galleries.find(params[:id])
+    if @gallery.update!(gallery_params)
+      flash[:success] = "Gallery successfully edited!"
+      redirect_to :root
+    else
+      render :new
+    end
+  end
+
+
+  def destroy
+    @gallery = current_user.galleries.find(params[:id])
+    if @gallery.destroy!
+      flash[:success] = "Gallery was successfully deleted."
+      redirect_to :root
+    else
+      flash[:alert] = "Something went wrong."
+    end
+  end
+
   private
+
+  def find_gallery
+    @gallery = Gallery.find(params[:id])
+  end
 
   def gallery_params
     params.require(:gallery).permit(:title, :description, :user_id)

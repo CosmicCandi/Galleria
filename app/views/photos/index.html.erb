@@ -6,29 +6,25 @@
         <span class="button-icon">
         <i class="glyphicon glyphicon-plus"></i>
         </span>
-        <span class="button-label">Add a photo</span>
+        <span class="button-label">Add a photo</span><br />
+        <span class="flash"><%= flash[:success] %></span>
       <% end %>
-      <!-- Delete a Photo -->
-
-
     </div>
-
 
   <% if @gallery.photos.count != nil %>
     <% @gallery.photos.each do |photo| %>
       <div class="media-object">
         <div class="media">
           <%= link_to image_tag(photo.photo_upload.versions[:thumb]), gallery_photo_path(@gallery, photo) %>
-          <p> <%= "Created at: #{photo.created_at.strftime("%A %b. %e %l:%m%P")}" %> </p>
-        </div>
-      </div>
       <!-- Delete a Photo -->
-      <%= link_to gallery_photo_path(@gallery, photo), method: "delete", class:"primary" do %>
+      <%= link_to gallery_photo_path(@gallery, photo), data: {confirm: "Are you sure you want to delete this photo? This operation cannot be undone."}, method: "delete", class:"primary" do %>
         <span class="button-icon">
         <i class="glyphicon glyphicon-trash"></i>
         </span>
         <span class="button-label">Delete Photo</span>
       <% end %>
+    </div>
+  </div>
 
     <% end %>
   <% else %>

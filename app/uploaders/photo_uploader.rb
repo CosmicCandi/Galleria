@@ -13,7 +13,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    resize_to_fill(80,80)
+    resize_to_fill(100,100)
   end
 
   # Choose what kind of storage to use for this uploader:

@@ -1,2 +1,5 @@
-<%= image_tag(@photo.photo_upload.versions[:std]) %>
-<%= @photo.caption %>
+<div class="photo">
+  <p> <%= image_tag(@photo.photo_upload.versions[:std]) %> </p>
+  <p class="text-center"> <%= @photo.caption %> </p>
+  <p class="text-center"> <%= "Created: #{@photo.created_at.strftime("%A %b. %e %l:%m%P")}" %> </p>
+</div>
