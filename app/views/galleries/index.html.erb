@@ -18,7 +18,7 @@
           </div>
 
           <div class="media-body">
-            <h4 class="media-heading text-center"><%= link_to "#{gal_output.title}", gallery_photos_path(gal_output.id) %></h4>
+            <h4 class="media-heading text-center"><%= link_to "#{gal_output.title}", gallery_photos_path(gal_output.id), target: :_blank %></h4>
             <%= simple_format gal_output.description, class:"text-center" %>
           </div>
           <p class="text-center"><%= "Created: #{gal_output.created_at.strftime("%A %b. %e %l:%m%P")}" %></p>
